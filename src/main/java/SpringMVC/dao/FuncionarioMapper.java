@@ -1,0 +1,19 @@
+package SpringMVC.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import SpringMVC.model.Funcionario;
+import org.springframework.jdbc.core.RowMapper;
+
+public class FuncionarioMapper implements RowMapper<Funcionario> {
+
+    public Funcionario mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Funcionario funcionario = new Funcionario();
+        funcionario.setCodigo(rs.getInt(1));
+        funcionario.setNome(rs.getString(2));
+        funcionario.setSalarioBase(rs.getInt(3));
+        return funcionario;
+    }
+
+}

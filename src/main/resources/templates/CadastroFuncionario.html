@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulário</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/geral.css" />
+</head>
+<body>
+<div class="container">
+    <h3>Cadastro de Funcionários</h3>
+    <div class="formulario">
+        <form action="#" th:action="@{/adicionafuncionario}" method="post" th:object="${funcionario}" modelAttribute="funcionario">
+            <div class="form-group">
+                <label for="nome">Name:</label>
+                <input type="text" placeholder="Insira seu nome" class="form-control" id="nome" th:field="*{nome}"/>
+            </div>
+            <div class="form-group">
+                <label for="salario">Salário Base:</label>
+                <input type="text" placeholder="Insira seu salario" class="form-control" id="salario" th:field="*{salarioBase}"/>
+            </div>
+            <input class="btn btn-default" type="submit" value="Enviar" />
+
+        </form>
+    </div>
+    <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
+    <a th:href="@{/lista}" method="get" class="btn btn-default">Listar funcionários</a>
+</div>
+
+</body>
+</html>
