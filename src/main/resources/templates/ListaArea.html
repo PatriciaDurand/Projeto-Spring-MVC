@@ -32,6 +32,7 @@
                     </tr>
                 </table>
             </div>
+            <p modelAttribute="erro" th:value="${erro}" th:text="${erro}" id="erro">Erro</p>
             <br />
             <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
             <a th:href="@{/cadastroFuncionario}" method="post" class="btn btn-default">Cadastrar funcionários</a>

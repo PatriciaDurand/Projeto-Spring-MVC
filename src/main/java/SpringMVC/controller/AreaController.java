@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 @Controller
 public class AreaController {
 
+    private String erro = "";
+
     @Autowired
     AreaDao areaDAO;
 
@@ -39,12 +41,18 @@ public class AreaController {
     public String listarArea(Model model) {
         areaDAO.setDataSource(dataSource);
         model.addAttribute("lista", areaDAO.listar());
+        if (erro != null)
+            model.addAttribute("erro", erro);
         return "ListaArea";
     }
 
     @RequestMapping(value = "/deletarArea/{codigo}", method=RequestMethod.GET)
-    public String deletarFuncionario(Model model, @PathVariable("codigo") int codigo) {
-        areaDAO.deletar(codigo);
+    public String deletarFuncionario(Model model, @PathVariable("codigo") int codigo) throws Exception {
+        try {
+            areaDAO.deletar(codigo);
+        } catch (Exception e) {
+            erro = e.getMessage();
+        }
         return "redirect:/listaArea";
     }
 

@@ -11,7 +11,7 @@ public interface AreaDao {
 
     List<Area> listar();
 
-    void deletar(int ccodigo);
+    void deletar(int ccodigo) throws Exception;
 
     void deletarCascata(int ccodigo);
 

@@ -48,13 +48,13 @@ public class AreaDAOJDBC implements AreaDao {
     }
 
     @Override
-    public void deletar(int codigo) {
+    public void deletar(int codigo) throws Exception {
         try {
             String SQL = "DELETE FROM AREA WHERE ID = ?";
             jdbcTemplateObject.update(SQL, codigo);
             System.out.println("Área deletada com sucesso!!\n ID = " + codigo);
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            throw new Exception("Não foi possível deletar a área " + buscarPorCodigo(codigo).getNome() + " porque existe funcionários associados a ela.");
         }
         return;
     }
