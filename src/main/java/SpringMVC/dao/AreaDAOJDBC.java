@@ -49,6 +49,18 @@ public class AreaDAOJDBC implements AreaDao {
 
     @Override
     public void deletar(int codigo) {
+        try {
+            String SQL = "DELETE FROM AREA WHERE ID = ?";
+            jdbcTemplateObject.update(SQL, codigo);
+            System.out.println("Área deletada com sucesso!!\n ID = " + codigo);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return;
+    }
+
+    @Override
+    public void deletarCascata(int codigo){
         List<Funcionario> listaFuncionarios = funcionarioDAO.listarPorArea(codigo);
         for (Funcionario funcionario : listaFuncionarios) {
             funcionarioDAO.deletar(funcionario.getCodigo());

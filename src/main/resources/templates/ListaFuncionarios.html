@@ -1,43 +1,42 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Formulário</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./css/geral.css" />
-</head>
-<body>
-<div class="container">
-    <h3>Lista de Funcionários</h3>
-    <div class="formulario">
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>Nome</th>
-                <th>Salário Base</th>
-                <th>Salário Líquido</th>
-                <th>Área</th>
-                <th></th>
-            </tr>
-            <tr th:each="funcionario : ${listaFuncionario}">
-                <td th:text="${funcionario.getNome()}" th:field="${funcionario.getNome()}" id="nome">Nome</td>
-                <td th:text="${funcionario.getSalarioBase()}" th:field="${funcionario.getSalarioBase()}" id="salariobase">Salario Base</td>
-                <td th:text="${funcionario.getSalarioLiquido()}" th:field="${funcionario.getSalarioLiquido()}" id="salarioliquido">Salario Líquido</td>
-                <td th:text="${funcionario.getArea()}" th:field="${funcionario.getArea()}" id="area">Área</td>
-                <td>
-                    <a th:href="@{'/deletarFuncionario/' + ${funcionario.codigo}}">
-                        <input class="btn btn-default" type="submit" value="Deletar" />
-                    </a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <br />
-    <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
-    <a th:href="@{/cadastroFuncionario}" method="post" class="btn btn-default">Cadastrar funcionários</a>
-    <a th:href="@{/cadastroArea}" method="post" class="btn btn-default">Cadastras Área</a>
-    <a th:href="@{/listaArea}" method="get" class="btn btn-default">Listar Área</a>
-</div>
-
-</body>
+    <head>
+        <title>Formulário</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/geral.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h3>Lista de Funcionários</h3>
+            <div class="formulario">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Salário Base</th>
+                        <th>Salário Líquido</th>
+                        <th>Área</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="funcionario : ${listaFuncionario}">
+                        <td th:text="${funcionario.getNome()}" th:field="${funcionario.getNome()}" id="nome">Nome</td>
+                        <td th:text="${funcionario.getSalarioBase()}" th:field="${funcionario.getSalarioBase()}" id="salariobase">Salario Base</td>
+                        <td th:text="${funcionario.getSalarioLiquido()}" th:field="${funcionario.getSalarioLiquido()}" id="salarioliquido">Salario Líquido</td>
+                        <td th:text="${funcionario.getArea()}" th:field="${funcionario.getArea()}" id="area">Área</td>
+                        <td>
+                            <a th:href="@{'/deletarFuncionario/' + ${funcionario.codigo}}">
+                                <input class="btn btn-default" type="submit" value="Deletar" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
+            <a th:href="@{/cadastroFuncionario}" method="post" class="btn btn-default">Cadastrar funcionários</a>
+            <a th:href="@{/cadastroArea}" method="post" class="btn btn-default">Cadastras Área</a>
+            <a th:href="@{/listaArea}" method="get" class="btn btn-default">Listar Área</a>
+        </div>
+    </body>
 </html>

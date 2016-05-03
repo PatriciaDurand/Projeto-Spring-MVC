@@ -13,6 +13,8 @@ public interface AreaDao {
 
     void deletar(int ccodigo);
 
+    void deletarCascata(int ccodigo);
+
     Area buscarPorCodigo(int codigo);
 
     void setDataSource(DataSource dataSource);

@@ -48,4 +48,10 @@ public class AreaController {
         return "redirect:/listaArea";
     }
 
+    @RequestMapping(value = "/deletarAreaCascata/{codigo}", method=RequestMethod.GET)
+    public String deletarFuncionarioCascata(Model model, @PathVariable("codigo") int codigo) {
+        areaDAO.deletarCascata(codigo);
+        return "redirect:/listaArea";
+    }
+
 }

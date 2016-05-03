@@ -1,30 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Formulário</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./css/geral.css" />
-</head>
-<body>
-<div class="container">
-    <h3>Cadastro de Área</h3>
-    <div class="formulario">
-        <form action="#" th:action="@{/adicionaArea}" method="post" th:object="${area}" modelAttribute="area">
-            <div class="form-group">
-                <label for="nome">Área:</label>
-                <input type="text" placeholder="Insira a área" class="form-control" id="nome" th:field="*{nome}"/>
+    <head>
+        <title>Formulário</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/geral.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h3>Cadastro de Área</h3>
+            <div class="formulario">
+                <form action="#" th:action="@{/adicionaArea}" method="post" th:object="${area}" modelAttribute="area">
+                    <div class="form-group">
+                        <label for="nome">Área:</label>
+                        <input type="text" placeholder="Insira a área" class="form-control" id="nome" th:field="*{nome}"/>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Enviar" />
+
+                </form>
             </div>
-            <input class="btn btn-default" type="submit" value="Enviar" />
-
-        </form>
-    </div>
-    <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
-    <a th:href="@{/cadastroFuncionario}" method="post" class="btn btn-default">Cadastrar funcionários</a>
-    <a th:href="@{/listaFuncionario}" method="post" class="btn btn-default">Listar funcionários</a>
-    <a th:href="@{/listaArea}" method="get" class="btn btn-default">Listar Área</a>
-</div>
-
-</body>
+            <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
+            <a th:href="@{/cadastroFuncionario}" method="post" class="btn btn-default">Cadastrar funcionários</a>
+            <a th:href="@{/listaFuncionario}" method="post" class="btn btn-default">Listar funcionários</a>
+            <a th:href="@{/listaArea}" method="get" class="btn btn-default">Listar Área</a>
+        </div>
+    </body>
 </html>
