@@ -25,9 +25,11 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
     @Override
     public void salvar(Funcionario funcionario) {
-        String SQL = "INSERT INTO FUNCIONARIO (NOME, SALARIOBASE) VALUES (?, ?)";
-        jdbcTemplateObject.update(SQL, funcionario.getNome(), funcionario.getSalarioBase());
-        System.out.println("Funcionario salvo com sucesso!\n Nome = " + funcionario.getNome() + " Salário Base = " + funcionario.getSalarioBase());
+        String SQL = "INSERT INTO FUNCIONARIO (NOME, SALARIOBASE, AREA) VALUES (?, ?, ?)";
+        jdbcTemplateObject.update(SQL, funcionario.getNome(), funcionario.getSalarioBase(), funcionario.getArea());
+        System.out.println("Funcionario salvo com sucesso!\n Nome = " + funcionario.getNome() +
+                " Salário Base = " + funcionario.getSalarioBase() +
+                " Área = " + funcionario.getArea());
         return;
     }
 
@@ -36,7 +38,13 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
         String SQL = "SELECT * FROM FUNCIONARIO";
         List <Funcionario> funcionarios = jdbcTemplateObject.query(SQL, new FuncionarioMapper());
         return funcionarios;
-//        return null;
+    }
+
+    @Override
+    public List<Funcionario> listarPorArea(int codArea){
+        String SQL = "SELECT * FROM FUNCIONARIO WHERE AREA = ? ";
+        List <Funcionario> funcionarios = jdbcTemplateObject.query(SQL, new Object[]{codArea}, new FuncionarioMapper());
+        return funcionarios;
     }
 
     @Override

@@ -1,13 +1,13 @@
 package SpringMVC.configuration;
 
-import SpringMVC.controller.FuncionarioController;
+import SpringMVC.controller.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {FuncionarioController.class})
+@ComponentScan(basePackageClasses = {FuncionarioController.class, IndexController.class, AreaController.class})
 public class AppWebConfiguration {
 
     @Bean

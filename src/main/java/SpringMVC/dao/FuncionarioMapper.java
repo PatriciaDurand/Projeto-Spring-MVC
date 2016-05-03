@@ -13,6 +13,7 @@ public class FuncionarioMapper implements RowMapper<Funcionario> {
         funcionario.setCodigo(rs.getInt(1));
         funcionario.setNome(rs.getString(2));
         funcionario.setSalarioBase(rs.getInt(3));
+        funcionario.setArea(rs.getInt(4));
         return funcionario;
     }
 

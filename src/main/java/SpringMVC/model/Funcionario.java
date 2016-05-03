@@ -9,13 +9,15 @@ public class Funcionario implements Serializable{
     private Integer codigo;
     public String nome;
     public double salarioBase;
+    public Integer area;
 
     public Funcionario() {
     }
 
-    public Funcionario(String nome, double salarioBase) {
+    public Funcionario(String nome, double salarioBase, Integer area) {
         this.nome = nome;
         this.salarioBase = salarioBase;
+        this.area = area;
     }
 
     public int getCodigo() {
@@ -27,7 +29,11 @@ public class Funcionario implements Serializable{
     }
 
     public double getSalarioBase() {
-        return (salarioBase);
+        return salarioBase;
+    }
+
+    public Integer getArea() {
+        return area;
     }
 
     public void setCodigo(int codigo) {
@@ -40,6 +46,10 @@ public class Funcionario implements Serializable{
 
     public void setSalarioBase(double salarioBase) {
         this.salarioBase = salarioBase;
+    }
+
+    public void setArea(Integer area) {
+        this.area = area;
     }
 
     public double getSalarioLiquido() {
@@ -57,6 +67,7 @@ public class Funcionario implements Serializable{
                 "codigo=" + codigo +
                 ", nome='" + nome + '\'' +
                 ", salarioBase=" + salarioBase +
+                ", area=" + area +
                 '}';
     }
 
@@ -71,7 +82,8 @@ public class Funcionario implements Serializable{
         final Funcionario other = (Funcionario) obj;
         if (!((Funcionario) obj).getNome().equals(this.nome) ||
                 ((Funcionario) obj).getCodigo()!=this.getCodigo() ||
-                ((Funcionario) obj).getSalarioBase()!=this.getSalarioBase()) {
+                ((Funcionario) obj).getSalarioBase()!=this.getSalarioBase() ||
+                ((Funcionario) obj).getArea()!=this.getArea()) {
             return false;
         }
         return true;
@@ -83,4 +95,5 @@ public class Funcionario implements Serializable{
         hash = 29 * hash + Objects.hashCode(this.nome);
         return hash;
     }
+
 }

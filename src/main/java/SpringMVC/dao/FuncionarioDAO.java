@@ -11,6 +11,8 @@ public interface FuncionarioDAO {
 
     List<Funcionario> listar();
 
+    List<Funcionario> listarPorArea(int codArea);
+
     void deletar(int ccodigo);
 
     Funcionario buscarPorCodigo(int codigo);

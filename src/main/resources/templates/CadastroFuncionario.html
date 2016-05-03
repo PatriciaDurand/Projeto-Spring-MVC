@@ -11,7 +11,7 @@
 <div class="container">
     <h3>Cadastro de Funcionários</h3>
     <div class="formulario">
-        <form action="#" th:action="@{/adicionafuncionario}" method="post" th:object="${funcionario}" modelAttribute="funcionario">
+        <form action="#" th:action="@{/adicionaFuncionario}" method="post" th:object="${funcionario}" modelAttribute="funcionario">
             <div class="form-group">
                 <label for="nome">Name:</label>
                 <input type="text" placeholder="Insira seu nome" class="form-control" id="nome" th:field="*{nome}"/>
@@ -20,12 +20,20 @@
                 <label for="salario">Salário Base:</label>
                 <input type="text" placeholder="Insira seu salario" class="form-control" id="salario" th:field="*{salarioBase}"/>
             </div>
+            <div class="form-group">
+                <select id="area" th:field="*{area}">
+                    <option th:each="areaObj : ${listaArea}"
+                            th:text="${areaObj.nome}" th:value="${areaObj.codigo}"></option>
+                </select>
+            </div>
             <input class="btn btn-default" type="submit" value="Enviar" />
 
         </form>
     </div>
     <a th:href="@{/}" method="post" class="btn btn-default">Index</a>
-    <a th:href="@{/lista}" method="get" class="btn btn-default">Listar funcionários</a>
+    <a th:href="@{/listaFuncionario}" method="get" class="btn btn-default">Listar Funcionários</a>
+    <a th:href="@{/cadastroArea}" method="post" class="btn btn-default">Cadastras Área</a>
+    <a th:href="@{/listaArea}" method="get" class="btn btn-default">Listar Área</a>
 </div>
 
 </body>

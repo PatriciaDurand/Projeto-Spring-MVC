@@ -1,5 +1,6 @@
 package SpringMVC.controller;
 
+import SpringMVC.dao.AreaDao;
 import SpringMVC.dao.FuncionarioDAO;
 import SpringMVC.model.Funcionario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,39 +17,41 @@ public class FuncionarioController {
     private FuncionarioDAO funcionarioDAO;
 
     @Autowired
+    private AreaDao areaDao;
+
+    @Autowired
     DataSource dataSource;
 
-    @RequestMapping("/")
-    public String home(Model model) {
-        return "index";
-    }
-
-    @RequestMapping(value = "/cadastro")
+    @RequestMapping(value = "/cadastroFuncionario")
     public String cadastrarFuncionario(Model model) {
         model.addAttribute("funcionario", new Funcionario());
+        areaDao.setDataSource(dataSource);
+        model.addAttribute("listaArea", areaDao.listar());
         return "CadastroFuncionario";
     }
 
-    @RequestMapping(value = "/adicionafuncionario", method = RequestMethod.POST)
+    @RequestMapping(value = "/adicionaFuncionario", method = RequestMethod.POST)
     public String adicionaFuncionario(Funcionario funcionario) {
         if (!funcionario.getNome().equals("") && funcionario.getSalarioBase() >= 0) {
             funcionarioDAO.setDataSource(dataSource);
             funcionarioDAO.salvar(funcionario);
         }
-        return "redirect:/cadastro";
+        return "redirect:/cadastroFuncionario";
     }
 
-    @RequestMapping(value = "/lista", method=RequestMethod.GET)
+    @RequestMapping(value = "/listaFuncionario", method=RequestMethod.GET)
     public String listarFuncionario(Model model) {
         funcionarioDAO.setDataSource(dataSource);
-        model.addAttribute("lista", funcionarioDAO.listar());
+        areaDao.setDataSource(dataSource);
+        model.addAttribute("listaFuncionario", funcionarioDAO.listar());
+        model.addAttribute("listaArea", areaDao.listar());
         return "ListaFuncionarios";
     }
 
-    @RequestMapping(value = "/deletar/{codigo}", method=RequestMethod.GET)
+    @RequestMapping(value = "/deletarFuncionario/{codigo}", method=RequestMethod.GET)
     public String deletarFuncionario(Model model, @PathVariable("codigo") int codigo) {
         funcionarioDAO.deletar(codigo);
-        return "redirect:/lista";
+        return "redirect:/listaFuncionario";
     }
 
 }
