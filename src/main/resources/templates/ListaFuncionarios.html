@@ -23,7 +23,7 @@
                         <td th:text="${funcionario.getNome()}" th:field="${funcionario.getNome()}" id="nome">Nome</td>
                         <td th:text="${funcionario.getSalarioBase()}" th:field="${funcionario.getSalarioBase()}" id="salariobase">Salario Base</td>
                         <td th:text="${funcionario.getSalarioLiquido()}" th:field="${funcionario.getSalarioLiquido()}" id="salarioliquido">Salario Líquido</td>
-                        <td th:text="${funcionario.getArea()}" th:field="${funcionario.getArea()}" id="area">Área</td>
+                        <td th:each="area : ${listaArea}" th:if="${area.codigo.equals(funcionario.area)}" th:text="${area.getNome()}" th:field="${funcionario.getArea()}" id="area">Área</td>
                         <td>
                             <a th:href="@{'/deletarFuncionario/' + ${funcionario.codigo}}">
                                 <input class="btn btn-default" type="submit" value="Deletar" />
