@@ -25,6 +25,7 @@ public class AreaController {
     @RequestMapping(value = "/cadastroArea")
     public String cadastrarFuncionario(Model model) {
         model.addAttribute("area", new Area());
+        model.addAttribute("erro", erro);
         return "CadastroArea";
     }
 
@@ -32,7 +33,7 @@ public class AreaController {
     public String adicionaFuncionario(Area area) {
         if (!area.getNome().equals("")) {
             areaDAO.setDataSource(dataSource);
-            areaDAO.salvar(area);
+            erro = areaDAO.salvar(area);
         }
         return "redirect:/cadastroArea";
     }
@@ -41,15 +42,14 @@ public class AreaController {
     public String listarArea(Model model) {
         areaDAO.setDataSource(dataSource);
         model.addAttribute("lista", areaDAO.listar());
-        if (erro != null)
-            model.addAttribute("erro", erro);
+        model.addAttribute("erro", erro);
         return "ListaArea";
     }
 
     @RequestMapping(value = "/deletarArea/{codigo}", method=RequestMethod.GET)
     public String deletarFuncionario(Model model, @PathVariable("codigo") int codigo) throws Exception {
         try {
-            areaDAO.deletar(codigo);
+            erro = areaDAO.deletar(codigo);
         } catch (Exception e) {
             erro = e.getMessage();
         }
@@ -58,7 +58,7 @@ public class AreaController {
 
     @RequestMapping(value = "/deletarAreaCascata/{codigo}", method=RequestMethod.GET)
     public String deletarFuncionarioCascata(Model model, @PathVariable("codigo") int codigo) {
-        areaDAO.deletarCascata(codigo);
+        erro = areaDAO.deletarCascata(codigo);
         return "redirect:/listaArea";
     }
 

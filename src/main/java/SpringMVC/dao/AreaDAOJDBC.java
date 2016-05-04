@@ -26,11 +26,10 @@ public class AreaDAOJDBC implements AreaDao {
     }
 
     @Override
-    public void salvar(Area area) {
+    public String salvar(Area area) {
         String SQL = "INSERT INTO AREA (NOME) VALUES (?)";
         jdbcTemplateObject.update(SQL, area.getNome());
-        System.out.println("Área salva com sucesso!\n Nome = " + area.getNome());
-        return;
+        return "Área " + area.getNome() + " salva com sucesso!!";
     }
 
     @Override
@@ -48,27 +47,27 @@ public class AreaDAOJDBC implements AreaDao {
     }
 
     @Override
-    public void deletar(int codigo) throws Exception {
+    public String deletar(int codigo) throws Exception {
+        String area = buscarPorCodigo(codigo).getNome();
         try {
             String SQL = "DELETE FROM AREA WHERE ID = ?";
             jdbcTemplateObject.update(SQL, codigo);
-            System.out.println("Área deletada com sucesso!!\n ID = " + codigo);
+            return "Área " + area + " deletada com sucesso!!";
         } catch (Exception e){
-            throw new Exception("Não foi possível deletar a área " + buscarPorCodigo(codigo).getNome() + " porque existe funcionários associados a ela.");
+            throw new Exception("Não foi possível deletar a área " + area + " porque existe funcionários associados a ela.");
         }
-        return;
     }
 
     @Override
-    public void deletarCascata(int codigo){
+    public String deletarCascata(int codigo){
         List<Funcionario> listaFuncionarios = funcionarioDAO.listarPorArea(codigo);
+        String area = buscarPorCodigo(codigo).getNome();
         for (Funcionario funcionario : listaFuncionarios) {
             funcionarioDAO.deletar(funcionario.getCodigo());
         }
         String SQL = "DELETE FROM AREA WHERE ID = ?";
         jdbcTemplateObject.update(SQL, codigo);
-        System.out.println("Área deletada com sucesso!!\n ID = " + codigo);
-        return;
+        return "Área " + area + " deletada com sucesso!!";
     }
 
 }

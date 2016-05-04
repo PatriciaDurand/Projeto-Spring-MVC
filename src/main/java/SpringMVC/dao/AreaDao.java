@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface AreaDao {
 
-    void salvar(Area area);
+    String salvar(Area area);
 
     List<Area> listar();
 
-    void deletar(int ccodigo) throws Exception;
+    String deletar(int codigo) throws Exception;
 
-    void deletarCascata(int ccodigo);
+    String deletarCascata(int codigo);
 
     Area buscarPorCodigo(int codigo);
 
